@@ -9,3 +9,15 @@
 3. Установите зависимости:
    ```bash
    poetry install
+
+## Генераторы
+
+Модуль `src.generators` содержит функции для эффективной работы с большими объемами транзакций.
+
+### Фильтрация по валюте
+```python
+from src.generators import filter_by_currency
+
+usd_transactions = filter_by_currency(transactions, "USD")
+for _ in range(2):
+    print(next(usd_transactions))
