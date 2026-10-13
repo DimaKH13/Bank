@@ -15,6 +15,10 @@ def test_get_mask_card_number(card_number: str, expected: str) -> None:
     assert get_mask_card_number(card_number) == expected
 
 
+def test_get_mask_card_number_short() -> None:
+    assert get_mask_card_number("123") == "123 ** **** 123"
+
+
 @pytest.mark.parametrize(
     "account_number, expected",
     [
@@ -25,3 +29,7 @@ def test_get_mask_card_number(card_number: str, expected: str) -> None:
 )
 def test_get_mask_account(account_number: str, expected: str) -> None:
     assert get_mask_account(account_number) == expected
+
+
+def test_get_mask_account_short() -> None:
+    assert get_mask_account("123") == "**123"

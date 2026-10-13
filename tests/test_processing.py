@@ -33,6 +33,10 @@ def test_filter_by_state_parametrized(
     assert len(result) == expected_len
 
 
+def test_filter_by_state_empty() -> None:
+    assert filter_by_state([]) == []
+
+
 def test_sort_by_date_desc(sample_operations: list[dict]) -> None:
     result = sort_by_date(sample_operations)
     assert result[0]["id"] == 3
@@ -43,3 +47,9 @@ def test_sort_by_date_asc(sample_operations: list[dict]) -> None:
     result = sort_by_date(sample_operations, reverse=False)
     assert result[0]["id"] == 1
     assert result[-1]["id"] == 3
+
+
+def test_sort_by_date_invalid_format() -> None:
+    invalid_data = [{"id": 1, "state": "EXECUTED", "date": "invalid-date"}]
+    with pytest.raises(ValueError):
+        sort_by_date(invalid_data)

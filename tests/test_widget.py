@@ -32,3 +32,8 @@ def test_mask_account_card_wrong_length() -> None:
 )
 def test_get_date(date_string: str, expected: str) -> None:
     assert get_date(date_string) == expected
+
+
+def test_get_date_invalid() -> None:
+    with pytest.raises(ValueError):
+        get_date("неверная дата")
