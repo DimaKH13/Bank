@@ -4,6 +4,7 @@ from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(account_card_info: str) -> str:
+    """Маскирует номер карты или счета в зависимости от типа."""
     parts = account_card_info.rsplit(" ", 1)
 
     if len(parts) < 2:
@@ -22,5 +23,6 @@ def mask_account_card(account_card_info: str) -> str:
 
 
 def get_date(date_string: str) -> str:
+    """Преобразует дату из ISO формата в формат ДД.ММ.ГГГГ."""
     dt_object = datetime.fromisoformat(date_string)
     return dt_object.strftime("%d.%m.%Y")
