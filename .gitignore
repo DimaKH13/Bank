@@ -7,5 +7,6 @@ env/
 .vscode/
 .mypy_cache/
 .pytest_cache/
+.env
 *.log
 logs/
