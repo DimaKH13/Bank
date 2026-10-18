@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 
 from src.decorators import log
@@ -24,9 +26,9 @@ def test_log_console_error(capsys: pytest.CaptureFixture) -> None:
     assert "divide error: ZeroDivisionError. Inputs: (1, 0), {}" in captured.out
 
 
-def test_log_file_success(tmp_path: pytest.TempPathFactory) -> None:
+def test_log_file_success(tmp_path: Path) -> None:
     filepath = tmp_path / "test_log.txt"
-    
+
     @log(filename=str(filepath))
     def add(a: int, b: int) -> int:
         return a + b
@@ -35,13 +37,15 @@ def test_log_file_success(tmp_path: pytest.TempPathFactory) -> None:
     assert filepath.read_text(encoding="utf-8").strip() == "add ok"
 
 
-def test_log_file_error(tmp_path: pytest.TempPathFactory) -> None:
+def test_log_file_error(tmp_path: Path) -> None:
     filepath = tmp_path / "test_log_err.txt"
-    
+
     @log(filename=str(filepath))
     def divide(a: int, b: int) -> float:
         return a / b
 
     with pytest.raises(ZeroDivisionError):
         divide(1, 0)
-    assert "divide error: ZeroDivisionError. Inputs: (1, 0), {}" in filepath.read_text(encoding="utf-8")
+    assert "divide error: ZeroDivisionError. Inputs: (1, 0), {}" in filepath.read_text(
+        encoding="utf-8"
+    )
