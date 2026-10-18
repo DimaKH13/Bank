@@ -1,6 +1,13 @@
+from typing import Any
+
 import pytest
 
-from src.processing import filter_by_state, sort_by_date
+from src.processing import (
+    filter_by_state,
+    process_bank_operations,
+    process_bank_search,
+    sort_by_date,
+)
 
 
 @pytest.fixture
@@ -53,3 +60,29 @@ def test_sort_by_date_invalid_format() -> None:
     invalid_data = [{"id": 1, "state": "EXECUTED", "date": "invalid-date"}]
     with pytest.raises(ValueError):
         sort_by_date(invalid_data)
+
+
+def test_process_bank_search() -> None:
+    data = [
+        {"description": "Перевод организации"},
+        {"description": "Открытие вклада"},
+        {"description": "Перевод со счета на счет"},
+    ]
+    result = process_bank_search(data, "перевод")
+    assert len(result) == 2
+
+    result_upper = process_bank_search(data, "ОТКРЫТИЕ")
+    assert len(result_upper) == 1
+
+
+def test_process_bank_operations() -> None:
+    data = [
+        {"description": "Перевод организации"},
+        {"description": "Открытие вклада"},
+        {"description": "Перевод со счета на счет"},
+        {"description": "Перевод с карты на карту"},
+    ]
+    categories = ["Перевод", "Открытие"]
+    result = process_bank_operations(data, categories)
+
+    assert result == {"Перевод": 3, "Открытие": 1}
