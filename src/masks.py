@@ -7,7 +7,9 @@ masks_logger = logging.getLogger("masks")
 masks_logger.setLevel(logging.DEBUG)
 
 file_handler = logging.FileHandler("logs/masks.log", mode="w", encoding="utf-8")
-file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+file_formatter = logging.Formatter(
+    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 file_handler.setFormatter(file_formatter)
 
 if not masks_logger.handlers:
