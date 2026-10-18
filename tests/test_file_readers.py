@@ -2,7 +2,6 @@ from typing import Any
 from unittest.mock import patch
 
 import pandas as pd
-import pytest
 
 from src.file_readers import read_transactions_csv, read_transactions_excel
 
@@ -48,7 +47,7 @@ def test_read_transactions_csv_mock(mock_read_csv: Any) -> None:
     mock_read_csv.return_value = mock_df
 
     result = read_transactions_csv("fake_path.csv")
-    
+
     assert len(result) == 1
     assert result[0]["id"] == 99
     mock_read_csv.assert_called_once_with("fake_path.csv", sep=";")
