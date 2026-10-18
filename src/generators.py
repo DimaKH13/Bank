@@ -5,7 +5,10 @@ def filter_by_currency(
     transactions: list[dict[str, Any]], currency_code: str
 ) -> Iterator[dict[str, Any]]:
     for transaction in transactions:
-        if transaction.get("operationAmount", {}).get("currency", {}).get("code") == currency_code:
+        if (
+            transaction.get("operationAmount", {}).get("currency", {}).get("code")
+            == currency_code
+        ):
             yield transaction
 
 
