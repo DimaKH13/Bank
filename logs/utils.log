@@ -1,0 +1,4 @@
+2026-10-18 05:29:41,364 - utils - INFO - Успешно прочитан файл: C:\Users\civyu\AppData\Local\Temp\pytest-of-civyu\pytest-7\test_load_transactions_valid0\test.json
+2026-10-18 05:29:41,366 - utils - ERROR - Файл не найден: non_existent_file.json
+2026-10-18 05:29:41,370 - utils - ERROR - Ошибка декодирования JSON в файле: C:\Users\civyu\AppData\Local\Temp\pytest-of-civyu\pytest-7\test_load_transactions_invalid0\invalid.json
+2026-10-18 05:29:41,375 - utils - ERROR - Данные в файле C:\Users\civyu\AppData\Local\Temp\pytest-of-civyu\pytest-7\test_load_transactions_not_a_l0\dict.json не являются списком

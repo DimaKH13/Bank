@@ -3,12 +3,18 @@ name = "BankWidget"
 version = "0.1.0"
 description = "Bank Widget"
 authors = [
-    {name = "Dmitriy Khokhlov",email = "you@example.com"}
+    {name = "Dmitriy Khokhlov", email = "you@example.com"}
 ]
 requires-python = ">=3.15"
 dependencies = [
+    "pandas>=3.0.6,<4.0.0",
+    "openpyxl>=3.1.5,<4.0.0",
+    "requests>=2.34.2,<3.0.0",
+    "python-dotenv>=1.2.4,<2.0.0"
 ]
 
+[tool.poetry]
+package-mode = false
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -16,10 +22,12 @@ build-backend = "poetry.core.masonry.api"
 
 [dependency-groups]
 lint = [
-    "flake8 (>=7.4.1,<8.0.0)",
-    "isort (>=9.0.2,<10.0.0)",
-    "mypy (>=2.4.0,<3.0.0)",
-    "black (==24.4.2)"
+    "flake8>=7.4.1,<8.0.0",
+    "isort>=9.0.2,<10.0.0",
+    "mypy>=2.4.0,<3.0.0",
+    "black==24.4.2",
+    "pytest>=9.1.1,<10.0.0",
+    "pytest-cov>=7.1.0,<8.0.0"
 ]
 
 [tool.black]
@@ -36,5 +44,5 @@ warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
 
-[tool.poetry]
-package-mode = false
+[tool.pytest.ini_options]
+pythonpath = "."
